@@ -2,17 +2,17 @@ class Solution {
 public:
     bool checkIfExist(vector<int>& arr) {
         
-        unordered_map<int,int> ump;
+        unordered_set<int> ust;
         int n = arr.size();
         bool ans = false;
         
         for(int i=0 ; i<arr.size() ; i++) {
             int val = arr[i];
-            if((val%2 == 0 && ump.count(val/2) > 0) || (ump.count(val*2) > 0)){
+            if((val%2 == 0 && ust.find(val/2) != ust.end()) || (ust.find(val*2) != ust.end())){
                 ans = true;
                 break;
             }
-            ump[val] = i;
+            ust.insert(val);
         }
         
         return ans;
